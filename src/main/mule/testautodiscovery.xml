@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7405c906-d0e2-44e3-a827-28ffc2ccc0bf" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<api-gateway:autodiscovery apiId="555" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="1ce020b0-9551-4506-b1b7-7cf51a04a778" flowRef="testautodiscoveryFlow" />
+	<flow name="testautodiscoveryFlow" doc:id="36d75343-ab84-43e1-9b40-2843b9d3da00" >
+		<http:listener doc:name="Listener" doc:id="b04c2446-5b5a-4e09-89f1-bf5112d6fa8f" config-ref="HTTP_Listener_config" path="/autodiscoverytest"/>
+		<set-payload value='"sucess"' doc:name="Set Payload" doc:id="80f247b3-c824-427f-bf19-306e726f7766" />
+	</flow>
+</mule>
